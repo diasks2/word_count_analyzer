@@ -22,6 +22,10 @@ Add this line to your application’s Gemfile:
 gem 'word_count_analyzer'
 ```
 
+##Live Demo
+
+Try out a [live demo](https://www.tm-town.com/word-count-analyzer) of Word Count Analyzer in the browser.
+
 ## Usage
 
 ### Analyze the word count gray areas of a string
