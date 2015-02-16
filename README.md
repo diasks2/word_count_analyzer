@@ -1,5 +1,7 @@
 # Word Count Analyzer
 
+[![Gem Version](https://badge.fury.io/rb/word_count_analyzer.svg)](http://badge.fury.io/rb/word_count_analyzer) [![Build Status](https://travis-ci.org/diasks2/word_count_analyzer.png)](https://travis-ci.org/diasks2/word_count_analyzer) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/diasks2/word_count_analyzer/blob/master/LICENSE.txt)
+
 See what word count [gray areas](#gray-area-details) might be affecting your word count.
 
 Word Count Analyzer is a Ruby gem that analyzes a string for potential areas of the text that might cause word count discrepancies depending on the tool used. It also provides comprehensive configuration options so you can easily customize how different gray areas should be counted and find the right word count for your purposes.
@@ -512,6 +514,12 @@ wc (Unix)      | 1
 - *[So how many words do you think it is?](http://multifarious.filkin.com/2012/11/13/wordcount)* - Paul Filkin
 - [Word Count](http://en.wikipedia.org/wiki/Word_count) - Wikipedia
 - [Words Counted Ruby Gem](https://github.com/abitdodgy/words_counted) - Mohamad El-Husseini
+
+## TODO
+
+- Add language support for languages other than English
+  - For most languages this is probably as simple as adding in the translations and abbreviations for months and days.
+  - For languages that use a character count (Japanese, Chinese) there will be larger changes. For these languages need to add an option for how to handle Roman words within the text.
 
 ## Contributing
 
