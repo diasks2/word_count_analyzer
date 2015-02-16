@@ -68,7 +68,7 @@ WordCountAnalyzer::Analyzer.new(text: text).analyze
 ### Count the words in a string
 
 ```ruby
-text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 2. <html> Some HTML and a hyphenated-word</html>. Don't count punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list 1. item a 2. item b 3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
+text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 2. <html> Some HTML and a hyphenated-word</html>. Don't count punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list \n\n1. item a \n\n2. item b \n\n3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
 
 WordCountAnalyzer::Counter.new(text: text).count
 # => 64
@@ -76,7 +76,7 @@ WordCountAnalyzer::Counter.new(text: text).count
 # Overrides all settings to match the way Pages handles word count. 
 # N.B. The developers of Pages may change the algorithm at any time so this should just be as an approximation.
 WordCountAnalyzer::Counter.new(text: text).pages_count
-# => 79
+# => 76 (or 79 if the list items are not formatted as a list)
 
 # Overrides all settings to match the way Microsoft Word and wc (Unix) handle word count. 
 # N.B. The developers of these tools may change the algorithm at any time so this should just be as an approximation.

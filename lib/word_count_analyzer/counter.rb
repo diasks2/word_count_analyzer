@@ -31,7 +31,7 @@ module WordCountAnalyzer
       @hyphenated_word = 'count_as_multiple'
       @date = 'no_special_treatment'
       @number = 'count'
-      @numbered_list = 'count'
+      @numbered_list = 'ignore'
       @xhtml = 'keep'
       @forward_slash = 'count_as_multiple'
       @backslash = 'count_as_multiple'

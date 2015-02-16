@@ -561,7 +561,7 @@ RSpec.describe WordCountAnalyzer::Counter do
 
   context 'Pages Word Count' do
     it 'reverse engineers Pages word count #001' do
-      text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 2. <html> Some HTML and a hyphenated-word</html>. Don't count punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list 1. item a 2. item b 3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
+      text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 2. <html> Some HTML and a hyphenated-word</html>. Don't count punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list \n\n1. item a \n\n2. item b \n\n3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
       ws = WordCountAnalyzer::Counter.new(
         text: text,
         ellipsis: 'no_special_treatment',
@@ -570,7 +570,7 @@ RSpec.describe WordCountAnalyzer::Counter do
         hyphenated_word: 'count_as_multiple',
         date: 'no_special_treatment',
         number: 'count',
-        numbered_list: 'count',
+        numbered_list: 'ignore',
         xhtml: 'keep',
         forward_slash: 'count_as_multiple',
         backslash: 'count_as_multiple',
@@ -579,19 +579,25 @@ RSpec.describe WordCountAnalyzer::Counter do
         underscore: 'ignore',
         stray_punctuation: 'ignore'
       )
-      expect(ws.count).to eq(79)
+      expect(ws.count).to eq(76)
     end
 
     it 'reverse engineers Pages word count #002' do
       text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 2. <html> Some HTML and a hyphenated-word</html>. Don't count punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list 1. item a 2. item b 3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
       ws = WordCountAnalyzer::Counter.new(text: text)
-      expect(ws.pages_count).to eq(79)
+      expect(ws.pages_count).to eq(76)
     end
 
     it 'reverse engineers Pages word count #003' do
       text = "..."
       ws = WordCountAnalyzer::Counter.new(text: text)
       expect(ws.pages_count).to eq(0)
+    end
+
+    it 'reverse engineers Pages word count #004' do
+      text = "1. List item a\n\n2. List item b\n\n3. List item c"
+      ws = WordCountAnalyzer::Counter.new(text: text)
+      expect(ws.pages_count).to eq(9)
     end
   end
 
