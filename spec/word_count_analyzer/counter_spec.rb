@@ -629,6 +629,11 @@ RSpec.describe WordCountAnalyzer::Counter do
       expect(ws.count).to eq(6)
     end
 
+    it 'String #004' do
+      ws = WordCountAnalyzer::Counter.new(text: 'hello world ...')
+      expect(ws.count).to eq(2)
+    end
+
     it 'does not split on unicode chars' do
       ws = WordCountAnalyzer::Counter.new(text: 'São Paulo')
       expect(ws.count).to eq(2)

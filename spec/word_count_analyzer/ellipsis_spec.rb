@@ -32,19 +32,25 @@ RSpec.describe WordCountAnalyzer::Ellipsis do
       expect(ws.includes_ellipsis?).to eq(true)
     end
 
-    it "returns false if the string doesn't include an ellipsis #006" do
+    it 'returns true if the string includes an ellipsis #006' do
+      string = 'hello world ...'
+      ws = WordCountAnalyzer::Ellipsis.new(string: string)
+      expect(ws.includes_ellipsis?).to eq(true)
+    end
+
+    it "returns false if the string doesn't include an ellipsis #007" do
       string = 'Hello world.'
       ws = WordCountAnalyzer::Ellipsis.new(string: string)
       expect(ws.includes_ellipsis?).to eq(false)
     end
 
-    it "returns false if the string includes a dotted_line #007" do
+    it "returns false if the string includes a dotted_line #008" do
       string = '.....'
       ws = WordCountAnalyzer::Ellipsis.new(string: string)
       expect(ws.includes_ellipsis?).to eq(false)
     end
 
-    it "returns false if the string includes a dotted_line #007" do
+    it "returns false if the string includes a dotted_line #009" do
       string = "Here is one …………………………………………………………………… and another ......"
       ws = WordCountAnalyzer::Ellipsis.new(string: string)
       expect(ws.includes_ellipsis?).to eq(false)
@@ -55,7 +61,7 @@ RSpec.describe WordCountAnalyzer::Ellipsis do
     it 'returns a string with the ellipsis replaced #001' do
       string = 'Using an ellipsis … causes different counts…depending on the style . . . that you use. I never meant that.... She left the store. The practice was not abandoned. . . .'
       ws = WordCountAnalyzer::Ellipsis.new(string: string)
-      expect(ws.replace).to eq("Using an ellipsis  wseword  causes different counts wseword depending on the style wseword that you use. I never meant that. wseword  She left the store. The practice was not abandoned wseword ")
+      expect(ws.replace).to eq("Using an ellipsis  wseword  causes different counts wseword depending on the style wseword that you use. I never meant that wseword  She left the store. The practice was not abandoned wseword ")
     end
   end
 

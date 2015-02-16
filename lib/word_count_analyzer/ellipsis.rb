@@ -1,8 +1,5 @@
 module WordCountAnalyzer
   class Ellipsis
-    # Rubular: http://rubular.com/r/i60hCK81fz
-    THREE_CONSECUTIVE_REGEX = /\.{3}(?=\s+[A-Z])/
-
     # Rubular: http://rubular.com/r/mfdtSeuIf2
     FOUR_CONSECUTIVE_REGEX = /(?<=[^\.])\.{3}\.(?=[^\.])/
 
@@ -12,7 +9,7 @@ module WordCountAnalyzer
     # Rubular: http://rubular.com/r/2VvZ8wRbd8
     FOUR_SPACE_REGEX = /(?<=[a-z])(\.\s){3}\.(\z|$|\n)/
 
-    OTHER_THREE_PERIOD_REGEX = /[^\.]\.{3}[^\.]/
+    OTHER_THREE_PERIOD_REGEX = /[^\.]\.{3}([^\.]|$)/
 
     UNICODE_ELLIPSIS = /(?<=[^…])…{1}(?=[^…])/
 
@@ -22,7 +19,6 @@ module WordCountAnalyzer
     end
 
     def includes_ellipsis?
-      !(string !~ THREE_CONSECUTIVE_REGEX) ||
       !(string !~ FOUR_CONSECUTIVE_REGEX) ||
       !(string !~ THREE_SPACE_REGEX) ||
       !(string !~ FOUR_SPACE_REGEX) ||
@@ -31,8 +27,7 @@ module WordCountAnalyzer
     end
 
     def replace
-      string.gsub(THREE_CONSECUTIVE_REGEX, ' wseword ')
-            .gsub(FOUR_CONSECUTIVE_REGEX, ' wseword ')
+      string.gsub(FOUR_CONSECUTIVE_REGEX, ' wseword ')
             .gsub(THREE_SPACE_REGEX, ' wseword ')
             .gsub(FOUR_SPACE_REGEX, ' wseword ')
             .gsub(OTHER_THREE_PERIOD_REGEX, ' wseword ')
