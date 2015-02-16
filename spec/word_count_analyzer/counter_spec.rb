@@ -553,6 +553,12 @@ RSpec.describe WordCountAnalyzer::Counter do
     expect(ws.count).to eq(66)
   end
 
+  it 'counts the words in a string #005' do
+    text = "Hello world... 11/22/2013"
+    ws = WordCountAnalyzer::Counter.new(text: text)
+    expect(ws.count).to eq(3)
+  end
+
   context 'Pages Word Count' do
     it 'reverse engineers Pages word count #001' do
       text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 2. <html> Some HTML and a hyphenated-word</html>. Don't count punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list 1. item a 2. item b 3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"

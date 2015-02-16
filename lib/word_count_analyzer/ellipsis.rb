@@ -9,7 +9,7 @@ module WordCountAnalyzer
     # Rubular: http://rubular.com/r/2VvZ8wRbd8
     FOUR_SPACE_REGEX = /(?<=[a-z])(\.\s){3}\.(\z|$|\n)/
 
-    OTHER_THREE_PERIOD_REGEX = /[^\.]\.{3}([^\.]|$)/
+    OTHER_THREE_PERIOD_REGEX = /(?<=[^\.])\.{3}(?=([^\.]|$))/
 
     UNICODE_ELLIPSIS = /(?<=[^…])…{1}(?=[^…])/
 

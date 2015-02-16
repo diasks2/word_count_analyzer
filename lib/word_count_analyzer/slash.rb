@@ -60,6 +60,7 @@ module WordCountAnalyzer
       processed_string.gsub!(FORWARD_SLASH_REGEX).each do |match|
         match.split(/\/+/).join(' ')
       end
+      processed_string
     end
 
     def replace_forward_slashes_except_dates
@@ -68,6 +69,7 @@ module WordCountAnalyzer
       except_date_string.gsub!(FORWARD_SLASH_REGEX).each do |match|
         match.split(/\/+/).join(' ')
       end
+      except_date_string
     end
 
     def backslash_occurences
@@ -79,6 +81,7 @@ module WordCountAnalyzer
       processed_string.gsub!(BACKSLASH_REGEX).each do |match|
         ' word ' * match.split(/\\+/).length
       end
+      processed_string
     end
   end
 end
