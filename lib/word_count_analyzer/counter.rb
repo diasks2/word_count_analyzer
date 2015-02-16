@@ -1,6 +1,6 @@
 module WordCountAnalyzer
   class Counter
-    attr_reader :text, :ellipsis, :hyperlink, :contraction, :hyphenated_word, :date, :number, :numbered_list, :xhtml, :forward_slash, :backslash, :dotted_line, :dashed_line, :underscore, :stray_punctuation, :tgr
+    attr_reader :text, :ellipsis, :hyperlink, :contraction, :hyphenated_word, :date, :number, :numbered_list, :xhtml, :forward_slash, :backslash, :dotted_line, :dashed_line, :underscore, :stray_punctuation, :equal_sign, :tgr
     def initialize(text:, **args)
       @text = text
       @ellipsis = args[:ellipsis] || 'ignore'
@@ -17,6 +17,7 @@ module WordCountAnalyzer
       @dashed_line = args[:dashed_line] || 'ignore'
       @underscore = args[:underscore] || 'ignore'
       @stray_punctuation = args[:stray_punctuation] || 'ignore'
+      @equal_sign = 'ignore'
       @tgr = EngTagger.new
     end
 
@@ -39,6 +40,7 @@ module WordCountAnalyzer
       @dashed_line = 'ignore'
       @underscore = 'ignore'
       @stray_punctuation = 'ignore'
+      @equal_sign = 'break'
       word_count
     end
 
@@ -77,6 +79,7 @@ module WordCountAnalyzer
       processed_text = process_dashed_line(processed_text)
       processed_text = process_underscore(processed_text)
       processed_text = process_stray_punctuation(processed_text)
+      processed_text = process_equal_sign(processed_text) if @equal_sign.eql?('break')
       processed_text.split(/\s+/).reject(&:empty?).size
     end
 
@@ -225,6 +228,10 @@ module WordCountAnalyzer
       else
         raise 'The value you specified for stray_punctuation is not a valid option. Please use either `ignore` or `count`. The default option is `ignore`'
       end
+    end
+
+    def process_equal_sign(txt)
+      txt.split('=').join(' ').split(/>(?=[a-zA-z]+)/).join(' ')
     end
   end
 end

@@ -599,6 +599,12 @@ RSpec.describe WordCountAnalyzer::Counter do
       ws = WordCountAnalyzer::Counter.new(text: text)
       expect(ws.pages_count).to eq(9)
     end
+
+    it 'reverse engineers Pages word count #005' do
+      text = "<span class=\"large-text\">Hello world</span> <new-tag>Hello</new-tag>"
+      ws = WordCountAnalyzer::Counter.new(text: text)
+      expect(ws.pages_count).to eq(12)
+    end
   end
 
   context 'Microsoft Word Count' do
