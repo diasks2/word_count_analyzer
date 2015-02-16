@@ -10,7 +10,7 @@ module WordCountAnalyzer
     UNDERSCORE_REGEX = /(?<=\s)_{2,}(\s|$)|\A_{2,}(?=(\s|$))/
 
     # Rubular: http://rubular.com/r/FexKxGUuIe
-    STRAY_PUNCTUATION_REGEX = /(?<=\s)[[:punct:]](?=(\s|$))|(?<=\s)\|(?=(\s|$))/
+    STRAY_PUNCTUATION_REGEX = /(?<=\s|\A)[[:punct:]](?=(\s|$))|(?<=\s|\A)\|(?=(\s|$))/
 
     attr_reader :string
     def initialize(string:)

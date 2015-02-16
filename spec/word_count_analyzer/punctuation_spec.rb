@@ -55,6 +55,12 @@ RSpec.describe WordCountAnalyzer::Punctuation do
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.stray_punctuation_occurences).to eq(0)
     end
+
+    it 'returns the number of stray punctuation occurences #003' do
+      string = "."
+      ws = WordCountAnalyzer::Punctuation.new(string: string)
+      expect(ws.stray_punctuation_occurences).to eq(1)
+    end
   end
 
   context '#replace_dotted_line' do
