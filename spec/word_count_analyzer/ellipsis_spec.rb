@@ -38,19 +38,49 @@ RSpec.describe WordCountAnalyzer::Ellipsis do
       expect(ws.includes_ellipsis?).to eq(true)
     end
 
-    it "returns false if the string doesn't include an ellipsis #007" do
+    it 'returns true if the string includes an ellipsis #007' do
+      string = '...'
+      ws = WordCountAnalyzer::Ellipsis.new(string: string)
+      expect(ws.includes_ellipsis?).to eq(true)
+    end
+
+    it 'returns true if the string includes an ellipsis #008' do
+      string = '....'
+      ws = WordCountAnalyzer::Ellipsis.new(string: string)
+      expect(ws.includes_ellipsis?).to eq(true)
+    end
+
+    it 'returns true if the string includes an ellipsis #009' do
+      string = ' . . . '
+      ws = WordCountAnalyzer::Ellipsis.new(string: string)
+      expect(ws.includes_ellipsis?).to eq(true)
+    end
+
+    it 'returns true if the string includes an ellipsis #010' do
+      string = ' . . . . '
+      ws = WordCountAnalyzer::Ellipsis.new(string: string)
+      expect(ws.includes_ellipsis?).to eq(true)
+    end
+
+    it 'returns true if the string includes an ellipsis #011' do
+      string = '…'
+      ws = WordCountAnalyzer::Ellipsis.new(string: string)
+      expect(ws.includes_ellipsis?).to eq(true)
+    end
+
+    it "returns false if the string doesn't include an ellipsis #012" do
       string = 'Hello world.'
       ws = WordCountAnalyzer::Ellipsis.new(string: string)
       expect(ws.includes_ellipsis?).to eq(false)
     end
 
-    it "returns false if the string includes a dotted_line #008" do
+    it "returns false if the string includes a dotted_line #0013" do
       string = '.....'
       ws = WordCountAnalyzer::Ellipsis.new(string: string)
       expect(ws.includes_ellipsis?).to eq(false)
     end
 
-    it "returns false if the string includes a dotted_line #009" do
+    it "returns false if the string includes a dotted_line #0014" do
       string = "Here is one …………………………………………………………………… and another ......"
       ws = WordCountAnalyzer::Ellipsis.new(string: string)
       expect(ws.includes_ellipsis?).to eq(false)

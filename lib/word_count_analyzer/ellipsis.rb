@@ -1,17 +1,17 @@
 module WordCountAnalyzer
   class Ellipsis
     # Rubular: http://rubular.com/r/mfdtSeuIf2
-    FOUR_CONSECUTIVE_REGEX = /(?<=[^\.])\.{3}\.(?=[^\.])/
+    FOUR_CONSECUTIVE_REGEX = /(?<=[^\.]|\A)\.{3}\.(?=[^\.]|$)/
 
     # Rubular: http://rubular.com/r/YBG1dIHTRu
     THREE_SPACE_REGEX = /(\s\.){3}\s/
 
     # Rubular: http://rubular.com/r/2VvZ8wRbd8
-    FOUR_SPACE_REGEX = /(?<=[a-z])(\.\s){3}\.(\z|$|\n)/
+    FOUR_SPACE_REGEX = /(?<=[a-z]|\A)(\.\s){3}\.(\z|$|\n)/
 
-    OTHER_THREE_PERIOD_REGEX = /(?<=[^\.])\.{3}(?=([^\.]|$))/
+    OTHER_THREE_PERIOD_REGEX = /(?<=[^\.]|\A)\.{3}(?=([^\.]|$))/
 
-    UNICODE_ELLIPSIS = /(?<=[^…])…{1}(?=[^…])/
+    UNICODE_ELLIPSIS = /(?<=[^…]|\A)…{1}(?=[^…]|$)/
 
     attr_reader :string
     def initialize(string:)
