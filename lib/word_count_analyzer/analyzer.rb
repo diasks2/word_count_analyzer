@@ -1,9 +1,8 @@
 module WordCountAnalyzer
   class Analyzer
-    attr_reader :text, :tgr
+    attr_reader :text
     def initialize(text:)
       @text = text
-      @tgr = EngTagger.new
     end
 
     def analyze
@@ -12,7 +11,7 @@ module WordCountAnalyzer
       contraction_count = 0
       hyphenated_word_count = 0
       WordCountAnalyzer::Xhtml.new(string: text).replace.split(/\s+/).each_with_index do |token, index|
-        contraction_count += 1 if WordCountAnalyzer::Contraction.new(token: token, following_token: text.split(/\s+/)[index + 1], tgr: tgr, hyphen: 'single').contraction?
+        contraction_count += 1 if WordCountAnalyzer::Contraction.new(token: token, following_token: text.split(/\s+/)[index + 1], tgr: EngTagger.new, hyphen: 'single').contraction?
         hyphenated_word_count += 1 if WordCountAnalyzer::HyphenatedWord.new(token: token).hyphenated_word?
       end
       analysis['hyperlink'] = WordCountAnalyzer::Hyperlink.new(string: text).occurences

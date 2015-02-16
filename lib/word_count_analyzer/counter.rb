@@ -1,6 +1,6 @@
 module WordCountAnalyzer
   class Counter
-    attr_reader :text, :ellipsis, :hyperlink, :contraction, :hyphenated_word, :date, :number, :numbered_list, :xhtml, :forward_slash, :backslash, :dotted_line, :dashed_line, :underscore, :stray_punctuation, :equal_sign, :tgr
+    attr_reader :text, :ellipsis, :hyperlink, :contraction, :hyphenated_word, :date, :number, :numbered_list, :xhtml, :forward_slash, :backslash, :dotted_line, :dashed_line, :underscore, :stray_punctuation, :equal_sign
     def initialize(text:, **args)
       @text = text
       @ellipsis = args[:ellipsis] || 'ignore'
@@ -18,7 +18,6 @@ module WordCountAnalyzer
       @underscore = args[:underscore] || 'ignore'
       @stray_punctuation = args[:stray_punctuation] || 'ignore'
       @equal_sign = 'ignore'
-      @tgr = EngTagger.new
     end
 
     def count
@@ -65,9 +64,10 @@ module WordCountAnalyzer
     private
 
     def word_count
+      tgr = EngTagger.new
       processed_text = process_ellipsis(text)
       processed_text = process_hyperlink(processed_text)
-      processed_text = process_contraction(processed_text)
+      processed_text = process_contraction(processed_text, tgr)
       processed_text = process_date(processed_text)
       processed_text = process_number(processed_text)
       processed_text = process_number_list(processed_text)
@@ -106,7 +106,7 @@ module WordCountAnalyzer
       end
     end
 
-    def process_contraction(txt)
+    def process_contraction(txt, tgr)
       if contraction.eql?('count_as_one')
         txt
       elsif contraction.eql?('count_as_multiple')
