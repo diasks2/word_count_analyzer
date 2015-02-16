@@ -25,7 +25,7 @@ module WordCountAnalyzer
     end
 
     def pages_count
-      @ellipsis = 'no_special_treatment'
+      @ellipsis = 'ignore'
       @hyperlink = 'split_at_period'
       @contraction = 'count_as_one'
       @hyphenated_word = 'count_as_multiple'
