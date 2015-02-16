@@ -151,6 +151,8 @@ WordCountAnalyzer::Counter.new(
 
 ##### `date`
   **default** = `'no_special_treatment'`
+- `'no_special_treatment'`   
+  Dates will not be searched for in the string. Therefore, how a date is handled in the word count will depend on other settings.
 - `'count_as_one'`  
   Counts a date as one word. This is more commonly seen in translation CAT tools where a date is thought of as a *placeable* that can usually be automatically translated. Examples:
   - Monday, April 4th, 2011 (1 word)
@@ -163,8 +165,6 @@ WordCountAnalyzer::Counter.new(
   - 2003 November 9 (1 word)
   - 2003-Nov-9 (1 word)
   - and others...
-- `'no_special_treatment'`   
-  Dates will not be searched for in the string. Therefore, how a date is handled in the word count will depend on other settings.
 
 <hr>
 
@@ -197,15 +197,15 @@ WordCountAnalyzer::Counter.new(
 
 ##### `forward_slash`
   **default** = `'count_as_multiple_except_dates'`
-- `'count_as_one'`  
-  Counts any tokens that include a forward slash as one word. Example:
-  - she/he/it (1 word)
-- `'count_as_multiple'`   
-  Separates any tokens that include a forward slash at the slash(s) and counts each token individually. Whether dates, hyperlinks and xhtml are included depends on what is set for those options. Example:
-  - she/he/it (3 words)
 - `'count_as_multiple_except_dates'`   
   Separates any tokens that include a forward slash (except dates) at the slash(s) and counts each token individually. Example:
   - she/he/it 4/25/2014 (4 words)  
+- `'count_as_multiple'`   
+  Separates any tokens that include a forward slash at the slash(s) and counts each token individually. Whether dates, hyperlinks and xhtml are included depends on what is set for those options. Example:
+  - she/he/it (3 words)  
+- `'count_as_one'`  
+  Counts any tokens that include a forward slash as one word. Example:
+  - she/he/it (1 word)
 
 <hr>
 
@@ -222,37 +222,37 @@ WordCountAnalyzer::Counter.new(
 
 ##### `dotted_line`
   **default** = `'ignore'`
-- `'count'`  
-  Counts a dotted line as one word.
 - `'ignore'`   
   Ignores any dotted lines in the string and does not count them towards the word count.
+- `'count'`  
+  Counts a dotted line as one word.
 
 <hr>
 
 ##### `dashed_line`
   **default** = `'ignore'`
+- `'ignore'`   
+  Ignores any dashed lines in the string and does not count them towards the word count.  
 - `'count'`  
   Counts a dashed line as one word.
-- `'ignore'`   
-  Ignores any dashed lines in the string and does not count them towards the word count.
 
 <hr>
 
 ##### `underscore`
   **default** = `'ignore'`
+- `'ignore'`   
+  Ignores any series of underscores in the string and does not count them towards the word count.     
 - `'count'`  
   Counts a series of underscores as one word.
-- `'ignore'`   
-  Ignores any series of underscores in the string and does not count them towards the word count.      
 
 <hr>
 
 ##### `stray_punctuation`
   **default** = `'ignore'`
+- `'ignore'`   
+  Ignores any punctuation marks surrounded on both sides by a whitespace in the string and does not count them towards the word count.    
 - `'count'`  
   Counts a punctuation mark surrounded on both sides by a whitespace as one word.
-- `'ignore'`   
-  Ignores any punctuation marks surrounded on both sides by a whitespace in the string and does not count them towards the word count.     
 
 ### Gray Area Details
 
