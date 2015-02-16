@@ -84,7 +84,6 @@ WordCountAnalyzer::Counter.new(text: text).pages_count
 
 # Overrides all settings to match the way Microsoft Word and wc (Unix) handle word count. 
 # N.B. The developers of these tools may change the algorithm at any time so this should just be as an approximation.
-
 WordCountAnalyzer::Counter.new(text: text).mword_count
 # => 71
 
