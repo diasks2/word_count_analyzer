@@ -523,6 +523,7 @@ wc (Unix)      | 1
 - Add language support for languages other than English
   - For most languages this is probably as simple as adding in the translations and abbreviations for months and days.
   - For languages that use a character count (Japanese, Chinese) there will be larger changes. For these languages need to add an option for how to handle Roman words within the text.
+- Improve performace for longer strings (potentially break string into smaller parts and then sum total of each)  
 
 ## Contributing
 
