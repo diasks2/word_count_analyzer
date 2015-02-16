@@ -1,0 +1,48 @@
+module WordCountAnalyzer
+  class Ellipsis
+    # Rubular: http://rubular.com/r/i60hCK81fz
+    THREE_CONSECUTIVE_REGEX = /\.{3}(?=\s+[A-Z])/
+
+    # Rubular: http://rubular.com/r/mfdtSeuIf2
+    FOUR_CONSECUTIVE_REGEX = /(?<=[^\.])\.{3}\.(?=[^\.])/
+
+    # Rubular: http://rubular.com/r/YBG1dIHTRu
+    THREE_SPACE_REGEX = /(\s\.){3}\s/
+
+    # Rubular: http://rubular.com/r/2VvZ8wRbd8
+    FOUR_SPACE_REGEX = /(?<=[a-z])(\.\s){3}\.(\z|$|\n)/
+
+    OTHER_THREE_PERIOD_REGEX = /[^\.]\.{3}[^\.]/
+
+    UNICODE_ELLIPSIS = /(?<=[^…])…{1}(?=[^…])/
+
+    attr_reader :string
+    def initialize(string:)
+      @string = string
+    end
+
+    def includes_ellipsis?
+      !(string !~ THREE_CONSECUTIVE_REGEX) ||
+      !(string !~ FOUR_CONSECUTIVE_REGEX) ||
+      !(string !~ THREE_SPACE_REGEX) ||
+      !(string !~ FOUR_SPACE_REGEX) ||
+      !(string !~ OTHER_THREE_PERIOD_REGEX) ||
+      !(string !~ UNICODE_ELLIPSIS)
+    end
+
+    def replace
+      string.gsub(THREE_CONSECUTIVE_REGEX, ' wseword ')
+            .gsub(FOUR_CONSECUTIVE_REGEX, ' wseword ')
+            .gsub(THREE_SPACE_REGEX, ' wseword ')
+            .gsub(FOUR_SPACE_REGEX, ' wseword ')
+            .gsub(OTHER_THREE_PERIOD_REGEX, ' wseword ')
+            .gsub(UNICODE_ELLIPSIS, ' wseword ')
+    end
+
+    def occurences
+      count = 0
+      replace.split(' ').map { |token| count += 1 if token.strip.eql?('wseword') }
+      count
+    end
+  end
+end
