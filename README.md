@@ -113,6 +113,8 @@ WordCountAnalyzer::Counter.new(
 - `'no_special_treatment'`   
   Ellipses will not be searched for in the string.
 
+<hr>
+
 ##### `hyperlink`
   **default** = `'count_as_one'`
 - `'count_as_one'`  
@@ -121,6 +123,8 @@ WordCountAnalyzer::Counter.new(
   Hyperlinks will not be searched for in the string. Therefore, how a hyperlink is handled in the word count will depend on other settings (mainly slashes).
 - `'split_at_period'`   
   Pages will split hyperlinks at a period and count each token as a separate word.  
+
+<hr>
 
 ##### `contraction`
   **default** = `'count_as_one'`
@@ -131,6 +135,8 @@ WordCountAnalyzer::Counter.new(
   - `don't` => `do not` (2 words)
   - `o'clock` => `of the clock` (3 words)  
 
+<hr>
+
 ##### `hyphenated_word`
   **default** = `'count_as_one'`
 - `'count_as_one'`  
@@ -138,6 +144,8 @@ WordCountAnalyzer::Counter.new(
 - `'count_as_multiple'`   
   Breaks a hyphenated word at each hyphen and counts each word separately. Example:
   - `devil-may-care` (3 words)
+
+<hr>
 
 ##### `date`
   **default** = `'no_special_treatment'`
@@ -153,9 +161,10 @@ WordCountAnalyzer::Counter.new(
   - 2003 November 9 (1 word)
   - 2003-Nov-9 (1 word)
   - and others...
-
 - `'no_special_treatment'`   
   Dates will not be searched for in the string. Therefore, how a date is handled in the word count will depend on other settings.
+
+<hr>
 
 ##### `number`
   **default** = `'count'`
@@ -164,6 +173,8 @@ WordCountAnalyzer::Counter.new(
 - `'ignore'`   
   Ignores any numbers in the string (with the exception of `dates` and `numbered_lists`) and does not count them towards the word count.
 
+<hr>
+
 ##### `numbered_list`
   **default** = `'count'`
 - `'count'`  
@@ -171,12 +182,16 @@ WordCountAnalyzer::Counter.new(
 - `'ignore'`   
   Ignores any numbers that are part of a numbered list and does not count them towards the word count.
 
+<hr>
+
 ##### `xhtml`
   **default** = `'remove'`
 - `'remove'`  
   Removes any XML or HTML opening and closing tags from the string.
 - `'keep'`   
   Ignores any XML or HTML in the string.  
+
+<hr>
 
 ##### `forward_slash`
   **default** = `'count_as_multiple_except_dates'`
@@ -190,6 +205,8 @@ WordCountAnalyzer::Counter.new(
   Separates any tokens that include a forward slash (except dates) at the slash(s) and counts each token individually. Example:
   - she/he/it 4/25/2014 (4 words)  
 
+<hr>
+
 ##### `backslash`
   **default** = `'count_as_one'`
 - `'count_as_one'`  
@@ -199,12 +216,16 @@ WordCountAnalyzer::Counter.new(
   Separates any tokens that include a backslash at the slash(s) and counts each token individually. Example:
   - c:\Users\johndoe (3 words)
 
+<hr>
+
 ##### `dotted_line`
   **default** = `'ignore'`
 - `'count'`  
   Counts a dotted line as one word.
 - `'ignore'`   
   Ignores any dotted lines in the string and does not count them towards the word count.
+
+<hr>
 
 ##### `dashed_line`
   **default** = `'ignore'`
@@ -213,12 +234,16 @@ WordCountAnalyzer::Counter.new(
 - `'ignore'`   
   Ignores any dashed lines in the string and does not count them towards the word count.
 
+<hr>
+
 ##### `underscore`
   **default** = `'ignore'`
 - `'count'`  
   Counts a series of underscores as one word.
 - `'ignore'`   
   Ignores any series of underscores in the string and does not count them towards the word count.      
+
+<hr>
 
 ##### `stray_punctuation`
   **default** = `'ignore'`
