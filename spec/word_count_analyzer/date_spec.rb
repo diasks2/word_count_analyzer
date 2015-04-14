@@ -245,6 +245,12 @@ RSpec.describe WordCountAnalyzer::Date do
       ws = WordCountAnalyzer::Date.new(string: string)
       expect(ws.replace).to eq('Today is  wsdateword ')
     end
+
+    it 'replaces the date occurences in a string #002' do
+      string = 'The scavenger hunt ends on Dec. 31st, 2011.'
+      ws = WordCountAnalyzer::Date.new(string: string)
+      expect(ws.replace).to eq('The scavenger hunt ends on  wsdateword ')
+    end
   end
 
   context '#replace_number_only_date' do

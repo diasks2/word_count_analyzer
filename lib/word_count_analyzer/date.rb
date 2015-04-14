@@ -34,55 +34,55 @@ module WordCountAnalyzer
       if counter > 0
         DOW_ABBR.each do |day|
           MONTHS.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
           end
           MONTH_ABBR.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
           end
         end
         DOW.each do |day|
           MONTHS.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                                   .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th)*\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                                   .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                                    .gsub(/\d{4}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*\d+\.?/i, ' wsdateword ')
-                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*\.?/i, ' wsdateword ')
+                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                                    .gsub(/\d{2}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*(\d{4}|\d{2})\.?/i, ' wsdateword ')
           end
           MONTH_ABBR.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                           .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th)*\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                           .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                            .gsub(/\d{4}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*\d+\.?/i, ' wsdateword ')
-                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*\.?/i, ' wsdateword ')
+                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                            .gsub(/\d{2}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*(\d{4}|\d{2})\.?/i, ' wsdateword ')
           end
         end
       else
         DOW.each do |day|
           MONTHS.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                                   .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th)*\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                                   .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                                    .gsub(/\d{4}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*\d+\.?/i, ' wsdateword ')
-                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*\.?/i, ' wsdateword ')
+                                   .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                                    .gsub(/\d{2}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*(\d{4}|\d{2})\.?/i, ' wsdateword ')
           end
           MONTH_ABBR.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
-                           .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th)*\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+                           .gsub(/\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                            .gsub(/\d{4}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*\d+\.?/i, ' wsdateword ')
-                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*\.?/i, ' wsdateword ')
+                           .gsub(/#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*\.?/i, ' wsdateword ')
                            .gsub(/\d{2}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*(\d{4}|\d{2})\.?/i, ' wsdateword ')
           end
         end
         DOW_ABBR.each do |day|
           MONTHS.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
           end
           MONTH_ABBR.each do |month|
-            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}\.?/i, ' wsdateword ')
+            new_string = new_string.gsub(/#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}\.?/i, ' wsdateword ')
           end
         end
       end
@@ -120,11 +120,11 @@ module WordCountAnalyzer
       DOW_ABBR.each do |day|
         MONTHS.each do |month|
           break if match_found
-          match_found = !(string !~ /#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}\s\d+(rd|th)*(,)*\s\d{4}/i)
+          match_found = !(string !~ /#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*(,)*\s\d{4}/i)
         end
         MONTH_ABBR.each do |month|
           break if match_found
-          match_found = !(string !~ /#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}/i)
+          match_found = !(string !~ /#{Regexp.escape(day)}(\.)*(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}/i)
         end
       end
       match_found
@@ -138,11 +138,11 @@ module WordCountAnalyzer
     end
 
     def check_for_matches(day, month)
-      !(string !~ /#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}/i) ||
-      !(string !~ /#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*(,)*\s\d{4}/i) ||
-      !(string !~ /\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th)*/i) ||
+      !(string !~ /#{Regexp.escape(day)}(,)*\s#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}/i) ||
+      !(string !~ /#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*(,)*\s\d{4}/i) ||
+      !(string !~ /\d{4}\.*\s#{Regexp.escape(month)}\s\d+(rd|th|st)*/i) ||
       !(string !~ /\d{4}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*\d+/i) ||
-      !(string !~ /#{Regexp.escape(month)}(\.)*\s\d+(rd|th)*/i) ||
+      !(string !~ /#{Regexp.escape(month)}(\.)*\s\d+(rd|th|st)*/i) ||
       !(string !~ /\d{2}(\.|-|\/)*#{Regexp.escape(month)}(\.|-|\/)*(\d{4}|\d{2})/i)
     end
   end
