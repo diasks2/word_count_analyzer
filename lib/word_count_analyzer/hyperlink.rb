@@ -1,3 +1,5 @@
+require 'uri'
+
 module WordCountAnalyzer
   class Hyperlink
     NON_HYPERLINK_REGEX = /\A\w+:$/
