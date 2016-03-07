@@ -9,7 +9,7 @@ module WordCountAnalyzer
     end
 
     def hyphenated_word?
-      (token.include?('-') || token.include?('﹘')) && !WordCountAnalyzer::Hyperlink.new(string: token).hyperlink?
+      (token.include?('-') || token.include?('﹘')) && !WordCountAnalyzer::Hyperlink.new.hyperlink?(token)
     end
 
     def count_as_multiple

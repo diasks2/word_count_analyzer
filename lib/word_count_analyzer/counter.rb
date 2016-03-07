@@ -1,8 +1,7 @@
 module WordCountAnalyzer
   class Counter
-    attr_reader :text, :ellipsis, :hyperlink, :contraction, :hyphenated_word, :date, :number, :numbered_list, :xhtml, :forward_slash, :backslash, :dotted_line, :dashed_line, :underscore, :stray_punctuation, :equal_sign
-    def initialize(text:, **args)
-      @text = text
+    attr_reader :ellipsis, :hyperlink, :contraction, :hyphenated_word, :date, :number, :numbered_list, :xhtml, :forward_slash, :backslash, :dotted_line, :dashed_line, :underscore, :stray_punctuation, :equal_sign
+    def initialize(**args)
       @ellipsis = args[:ellipsis] || 'ignore'
       @hyperlink = args[:hyperlink] || 'count_as_one'
       @contraction = args[:contraction] || 'count_as_one'
@@ -18,13 +17,14 @@ module WordCountAnalyzer
       @underscore = args[:underscore] || 'ignore'
       @stray_punctuation = args[:stray_punctuation] || 'ignore'
       @equal_sign = 'ignore'
+      @tgr = EngTagger.new
     end
 
-    def count
-      word_count
+    def count(text)
+      word_count(text)
     end
 
-    def pages_count
+    def pages_count(text)
       @ellipsis = 'ignore'
       @hyperlink = 'split_at_period'
       @contraction = 'count_as_one'
@@ -40,10 +40,10 @@ module WordCountAnalyzer
       @underscore = 'ignore'
       @stray_punctuation = 'ignore'
       @equal_sign = 'break'
-      word_count
+      word_count(text)
     end
 
-    def mword_count
+    def mword_count(text)
       @ellipsis = 'no_special_treatment'
       @hyperlink = 'count_as_one'
       @contraction = 'count_as_one'
@@ -58,16 +58,15 @@ module WordCountAnalyzer
       @dashed_line = 'count'
       @underscore = 'count'
       @stray_punctuation = 'count'
-      word_count
+      word_count(text)
     end
 
     private
 
-    def word_count
-      tgr = EngTagger.new
+    def word_count(text)
       processed_text = process_ellipsis(text)
       processed_text = process_hyperlink(processed_text)
-      processed_text = process_contraction(processed_text, tgr)
+      processed_text = process_contraction(processed_text, @tgr)
       processed_text = process_date(processed_text)
       processed_text = process_number(processed_text)
       processed_text = process_number_list(processed_text)
@@ -85,7 +84,7 @@ module WordCountAnalyzer
 
     def process_ellipsis(txt)
       if ellipsis.eql?('ignore')
-        WordCountAnalyzer::Ellipsis.new(string: txt).replace.gsub(/wseword/, '')
+        WordCountAnalyzer::Ellipsis.new.replace(txt).gsub(/wseword/, '')
       elsif ellipsis.eql?('no_special_treatment')
         txt
       else
@@ -96,9 +95,9 @@ module WordCountAnalyzer
     def process_hyperlink(txt)
       case
       when hyperlink.eql?('count_as_one')
-        WordCountAnalyzer::Hyperlink.new(string: txt).replace
+        WordCountAnalyzer::Hyperlink.new.replace(txt)
       when hyperlink.eql?('split_at_period')
-        WordCountAnalyzer::Hyperlink.new(string: txt).replace_split_at_period
+        WordCountAnalyzer::Hyperlink.new.replace_split_at_period(txt)
       when hyperlink.eql?('no_special_treatment')
         txt
       else
@@ -131,7 +130,7 @@ module WordCountAnalyzer
       if date.eql?('no_special_treatment')
         txt
       elsif date.eql?('count_as_one')
-        WordCountAnalyzer::Date.new(string: txt).replace
+        WordCountAnalyzer::Date.new.replace(txt)
       else
         raise 'The value you specified for date is not a valid option. Please use either `count_as_one` or `no_special_treatment`. The default option is `no_special_treatment`'
       end

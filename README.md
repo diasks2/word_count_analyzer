@@ -49,7 +49,7 @@ Other gray areas not covered by this gem:
 
 ```ruby
 text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 4. <html> Some HTML and a hyphenated-word</html>. Don't count stray punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list 1. item a 2. item b 3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
-WordCountAnalyzer::Analyzer.new(text: text).analyze
+WordCountAnalyzer::Analyzer.new.analyze(text)
 
 # =>   {
 #        "ellipsis": 1,
@@ -74,22 +74,21 @@ WordCountAnalyzer::Analyzer.new(text: text).analyze
 ```ruby
 text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 2. <html> Some HTML and a hyphenated-word</html>. Don't count punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list \n\n1. item a \n\n2. item b \n\n3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
 
-WordCountAnalyzer::Counter.new(text: text).count
+WordCountAnalyzer::Counter.new.count(text)
 # => 64
 
 # Overrides all settings to match the way Pages handles word count. 
 # N.B. The developers of Pages may change the algorithm at any time so this should just be as an approximation.
-WordCountAnalyzer::Counter.new(text: text).pages_count
+WordCountAnalyzer::Counter.new.pages_count(text)
 # => 76 (or 79 if the list items are not formatted as a list)
 
 # Overrides all settings to match the way Microsoft Word and wc (Unix) handle word count. 
 # N.B. The developers of these tools may change the algorithm at any time so this should just be as an approximation.
-WordCountAnalyzer::Counter.new(text: text).mword_count
+WordCountAnalyzer::Counter.new.mword_count(text)
 # => 71
 
 # Highly configurable (see all options below)
 WordCountAnalyzer::Counter.new(
-  text: text,
   ellipsis: 'no_special_treatment',
   hyperlink: 'no_special_treatment',
   contraction: 'count_as_multiple',
@@ -104,7 +103,7 @@ WordCountAnalyzer::Counter.new(
   dashed_line: 'count',
   underscore: 'count',
   stray_punctuation: 'count'
-).count
+).count(text)
 
 # => 77
 ```

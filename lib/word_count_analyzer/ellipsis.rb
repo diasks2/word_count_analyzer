@@ -13,30 +13,25 @@ module WordCountAnalyzer
 
     UNICODE_ELLIPSIS = /(?<=[^…]|\A)…{1}(?=[^…]|$)/
 
-    attr_reader :string
-    def initialize(string:)
-      @string = string
+    def includes_ellipsis?(text)
+      !(text !~ FOUR_CONSECUTIVE_REGEX) ||
+      !(text !~ THREE_SPACE_REGEX) ||
+      !(text !~ FOUR_SPACE_REGEX) ||
+      !(text !~ OTHER_THREE_PERIOD_REGEX) ||
+      !(text !~ UNICODE_ELLIPSIS)
     end
 
-    def includes_ellipsis?
-      !(string !~ FOUR_CONSECUTIVE_REGEX) ||
-      !(string !~ THREE_SPACE_REGEX) ||
-      !(string !~ FOUR_SPACE_REGEX) ||
-      !(string !~ OTHER_THREE_PERIOD_REGEX) ||
-      !(string !~ UNICODE_ELLIPSIS)
-    end
-
-    def replace
-      string.gsub(FOUR_CONSECUTIVE_REGEX, ' wseword ')
+    def replace(text)
+      text.gsub(FOUR_CONSECUTIVE_REGEX, ' wseword ')
             .gsub(THREE_SPACE_REGEX, ' wseword ')
             .gsub(FOUR_SPACE_REGEX, ' wseword ')
             .gsub(OTHER_THREE_PERIOD_REGEX, ' wseword ')
             .gsub(UNICODE_ELLIPSIS, ' wseword ')
     end
 
-    def occurences
+    def occurences(text)
       count = 0
-      replace.split(' ').map { |token| count += 1 if token.strip.eql?('wseword') }
+      replace(text).split(' ').map { |token| count += 1 if token.strip.eql?('wseword') }
       count
     end
   end

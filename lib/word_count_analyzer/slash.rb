@@ -12,32 +12,33 @@ module WordCountAnalyzer
       @date = args[:date] || nil
       @xhtml = args[:xhtml] || nil
       @hyperlink = args[:hyperlink] || nil
+      hyper = WordCountAnalyzer::Hyperlink.new
       if date.eql?('no_special_treatment')
         if xhtml.eql?('keep')
           if hyperlink.eql?('no_special_treatment') || hyperlink.eql?('split_at_period')
             @processed_string = string
           else
-            @processed_string = WordCountAnalyzer::Hyperlink.new(string: string).replace
+            @processed_string = hyper.replace(string)
           end
         else
           if hyperlink.eql?('no_special_treatment') || hyperlink.eql?('split_at_period')
             @processed_string = WordCountAnalyzer::Xhtml.new(string: string).replace
           else
-            @processed_string = WordCountAnalyzer::Xhtml.new(string: WordCountAnalyzer::Hyperlink.new(string: string).replace).replace
+            @processed_string = WordCountAnalyzer::Xhtml.new(string: hyper.replace(string)).replace
           end
         end
       else
         if xhtml.eql?('keep')
           if hyperlink.eql?('no_special_treatment') || hyperlink.eql?('split_at_period')
-            @processed_string = WordCountAnalyzer::Date.new(string: string).replace
+            @processed_string = WordCountAnalyzer::Date.new.replace(string)
           else
-            @processed_string = WordCountAnalyzer::Date.new(string: WordCountAnalyzer::Hyperlink.new(string: string).replace).replace
+            @processed_string = WordCountAnalyzer::Date.new.replace(hyper.replace(string))
           end
         else
           if hyperlink.eql?('no_special_treatment') || hyperlink.eql?('split_at_period')
-            @processed_string = WordCountAnalyzer::Date.new(string: WordCountAnalyzer::Xhtml.new(string: string).replace).replace
+            @processed_string = WordCountAnalyzer::Date.new.replace(WordCountAnalyzer::Xhtml.new(string: string).replace)
           else
-            @processed_string = WordCountAnalyzer::Date.new(string: WordCountAnalyzer::Xhtml.new(string: WordCountAnalyzer::Hyperlink.new(string: string).replace).replace).replace
+            @processed_string = WordCountAnalyzer::Date.new.replace(WordCountAnalyzer::Xhtml.new(string: hyper.replace(string)).replace)
           end
         end
       end
@@ -65,7 +66,7 @@ module WordCountAnalyzer
 
     def replace_forward_slashes_except_dates
       return processed_string if processed_string !~ FORWARD_SLASH_REGEX
-      except_date_string = WordCountAnalyzer::Date.new(string: processed_string).replace_number_only_date
+      except_date_string = WordCountAnalyzer::Date.new.replace_number_only_date(processed_string)
       except_date_string.gsub!(FORWARD_SLASH_REGEX).each do |match|
         match.split(/\/+/).join(' ')
       end

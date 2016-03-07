@@ -81,7 +81,7 @@ module WordCountAnalyzer
       "jack-o'-lantern"   => "jack-of-the-lantern",
       "will-o'-the-wisp"  => "will-of-the-wisp",
       "'twas"             => "it was"
-    }
+    }.freeze
 
     attr_reader :token, :following_token, :tgr, :hyphen
     def initialize(token:, following_token:, tgr:, **args)
