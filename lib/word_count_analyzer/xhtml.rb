@@ -19,7 +19,7 @@ module WordCountAnalyzer
       string.split(/\s+/).size - replace.strip.split(/\s+/).size
     end
 
-    def occurences
+    def occurrences
       string.gsub(XHTML_REGEX, ' wsxhtmlword ').scan(/wsxhtmlword/).size / 2
     end
   end

@@ -11,7 +11,7 @@ module WordCountAnalyzer
       !(text !~ URI.regexp) && text !~ NON_HYPERLINK_REGEX && !(text !~ HYPERLINK_REGEX)
     end
 
-    def occurences(text)
+    def occurrences(text)
       text.scan(URI.regexp).map { |link| link.compact.size > 1 ? 1 : 0 }.inject(0) { |sum, x| sum + x }
     end
 

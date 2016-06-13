@@ -47,17 +47,17 @@ RSpec.describe WordCountAnalyzer::Number do
     end
   end
 
-  context '#occurences' do
-    it 'returns the number of occurences of a number in the string #001' do
+  context '#occurrences' do
+    it 'returns the number of occurrences of a number in the string #001' do
       string = 'It was only 50 % of the total. 500 total. That costs $300 and is 50% off.'
       ws = WordCountAnalyzer::Number.new(string: string)
-      expect(ws.occurences).to eq(4)
+      expect(ws.occurrences).to eq(4)
     end
 
     it 'ignores dates #002' do
       string = 'It was only 50 % of the total on Wednesday, June 4 2015. 500 total. That costs $300 and is 50% off only on Apr 5th 1999.'
       ws = WordCountAnalyzer::Number.new(string: string)
-      expect(ws.occurences).to eq(4)
+      expect(ws.occurrences).to eq(4)
     end
   end
 end

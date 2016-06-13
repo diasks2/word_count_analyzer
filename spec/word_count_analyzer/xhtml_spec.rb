@@ -55,11 +55,11 @@ RSpec.describe WordCountAnalyzer::Xhtml do
     end
   end
 
-  context '#occurences' do
+  context '#occurrences' do
     it 'counts the number of tags (1 opening set and 1 closing set of tags counts as 1)' do
       string = '<span class=”cool-text”>Hello world</span> Hello there. Another sentence <tuv>Sentence</tuv> here. Hello world.'
       ws = WordCountAnalyzer::Xhtml.new(string: string)
-      expect(ws.occurences).to eq(2)
+      expect(ws.occurrences).to eq(2)
     end
   end
 end
