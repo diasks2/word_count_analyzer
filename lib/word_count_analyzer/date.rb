@@ -27,7 +27,7 @@ module WordCountAnalyzer
       redact_regex(text)
     end
 
-    def occurences(text)
+    def occurrences(text)
       replace(text).scan(/wsdateword/).size
     end
 

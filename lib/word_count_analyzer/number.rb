@@ -16,7 +16,7 @@ module WordCountAnalyzer
       string.gsub(NUMBER_REGEX, ' wsnumword ')
     end
 
-    def occurences
+    def occurrences
       replace.scan(/wsnumword/).size
     end
   end

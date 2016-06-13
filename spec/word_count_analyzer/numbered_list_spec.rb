@@ -35,35 +35,35 @@ RSpec.describe WordCountAnalyzer::NumberedList do
     end
   end
 
-  context '#occurences' do
-    it 'counts the occurences of numbered lists #001' do
+  context '#occurrences' do
+    it 'counts the occurrences of numbered lists #001' do
       string = "1. List item a\n\n2. List item b\n\n3. List item c."
       ws = WordCountAnalyzer::NumberedList.new(string: string)
-      expect(ws.occurences).to eq(3)
+      expect(ws.occurrences).to eq(3)
     end
 
-    it 'counts the occurences of numbered lists #002' do
+    it 'counts the occurrences of numbered lists #002' do
       string = "I have 2."
       ws = WordCountAnalyzer::NumberedList.new(string: string)
-      expect(ws.occurences).to eq(0)
+      expect(ws.occurrences).to eq(0)
     end
 
-    it 'counts the occurences of numbered lists #003' do
+    it 'counts the occurrences of numbered lists #003' do
       string = "1. List item a\n\n2. List item b\n\n3. List item c. Then more text. Ok start a new list. 1. item a 2. item b."
       ws = WordCountAnalyzer::NumberedList.new(string: string)
-      expect(ws.occurences).to eq(5)
+      expect(ws.occurrences).to eq(5)
     end
 
-    it 'counts the occurences of numbered lists #004' do
+    it 'counts the occurrences of numbered lists #004' do
       string = "1. List item a\n\n2. List item b\n\n3. List item c. Then more text. Ok start a new non-list. I have 2."
       ws = WordCountAnalyzer::NumberedList.new(string: string)
-      expect(ws.occurences).to eq(3)
+      expect(ws.occurrences).to eq(3)
     end
 
-    it 'counts the occurences of numbered lists #005' do
+    it 'counts the occurrences of numbered lists #005' do
       string = "It also shouldn't have too many contractions, maybe 2. Let's add a list 1. item a 2. item b 3. item c."
       ws = WordCountAnalyzer::NumberedList.new(string: string)
-      expect(ws.occurences).to eq(3)
+      expect(ws.occurrences).to eq(3)
     end
   end
 end

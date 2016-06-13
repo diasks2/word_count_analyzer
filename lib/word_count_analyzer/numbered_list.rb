@@ -35,7 +35,7 @@ module WordCountAnalyzer
       new_string
     end
 
-    def occurences
+    def occurrences
       count_list_items_in_array
     end
 

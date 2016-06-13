@@ -2,13 +2,13 @@ require 'spec_helper'
 
 RSpec.describe WordCountAnalyzer::Punctuation do
   context '#dotted_line_ocurrances' do
-    it 'returns the number of dotted line occurences #001' do
+    it 'returns the number of dotted line occurrences #001' do
       string = "Here is one …………………………………………………………………… and another ......"
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.dotted_line_ocurrances).to eq(2)
     end
 
-    it 'returns the number of dotted line occurences #002' do
+    it 'returns the number of dotted line occurrences #002' do
       string = "Hello world"
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.dotted_line_ocurrances).to eq(0)
@@ -16,13 +16,13 @@ RSpec.describe WordCountAnalyzer::Punctuation do
   end
 
   context '#dashed_line_ocurrances' do
-    it 'returns the number of dotted line occurences #001' do
+    it 'returns the number of dotted line occurrences #001' do
       string = "Here is one ----- and another -----"
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.dashed_line_ocurrances).to eq(2)
     end
 
-    it 'returns the number of dotted line occurences #002' do
+    it 'returns the number of dotted line occurrences #002' do
       string = "Hello world"
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.dashed_line_ocurrances).to eq(0)
@@ -30,13 +30,13 @@ RSpec.describe WordCountAnalyzer::Punctuation do
   end
 
   context '#underscore_ocurrances' do
-    it 'returns the number of undescore occurences #001' do
+    it 'returns the number of undescore occurrences #001' do
       string = "Here is one ______ and another ______"
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.underscore_ocurrances).to eq(2)
     end
 
-    it 'returns the number of undescore occurences #002' do
+    it 'returns the number of undescore occurrences #002' do
       string = "Hello world"
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.underscore_ocurrances).to eq(0)
@@ -44,19 +44,19 @@ RSpec.describe WordCountAnalyzer::Punctuation do
   end
 
   context '#stray_punctuation_occurences' do
-    it 'returns the number of stray punctuation occurences #001' do
+    it 'returns the number of stray punctuation occurrences #001' do
       string = "Hello world ? This is another - sentence ."
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.stray_punctuation_occurences).to eq(3)
     end
 
-    it 'returns the number of stray punctuation occurences #002' do
+    it 'returns the number of stray punctuation occurrences #002' do
       string = "Hello world. Great?"
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.stray_punctuation_occurences).to eq(0)
     end
 
-    it 'returns the number of stray punctuation occurences #003' do
+    it 'returns the number of stray punctuation occurrences #003' do
       string = "."
       ws = WordCountAnalyzer::Punctuation.new(string: string)
       expect(ws.stray_punctuation_occurences).to eq(1)

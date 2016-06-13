@@ -225,28 +225,28 @@ RSpec.describe WordCountAnalyzer::Date do
     end
   end
 
-  context '#occurences' do
-    it 'counts the date occurences in a string #001' do
+  context '#occurrences' do
+    it 'counts the date occurrences in a string #001' do
       string = 'Today is Sunday, 8 November 2014.'
       ws = WordCountAnalyzer::Date.new
-      expect(ws.occurences(string)).to eq(1)
+      expect(ws.occurrences(string)).to eq(1)
     end
 
-    it 'counts the date occurences in a string #002' do
+    it 'counts the date occurrences in a string #002' do
       string = 'Today is Sunday, 8 November 2014. Yesterday was 07/Nov/2014.'
       ws = WordCountAnalyzer::Date.new
-      expect(ws.occurences(string)).to eq(2)
+      expect(ws.occurrences(string)).to eq(2)
     end
   end
 
   context '#replace' do
-    it 'replaces the date occurences in a string #001' do
+    it 'replaces the date occurrences in a string #001' do
       string = 'Today is Tues. March 3rd, 2011.'
       ws = WordCountAnalyzer::Date.new
       expect(ws.replace(string)).to eq('Today is  wsdateword ')
     end
 
-    it 'replaces the date occurences in a string #002' do
+    it 'replaces the date occurrences in a string #002' do
       string = 'The scavenger hunt ends on Dec. 31st, 2011.'
       ws = WordCountAnalyzer::Date.new
       expect(ws.replace(string)).to eq('The scavenger hunt ends on  wsdateword ')
@@ -254,7 +254,7 @@ RSpec.describe WordCountAnalyzer::Date do
   end
 
   context '#replace_number_only_date' do
-    it 'replaces only the number date occurences in a string' do
+    it 'replaces only the number date occurrences in a string' do
       string = 'Today is Tues. March 3rd, 2011. 4/28/2013'
       ws = WordCountAnalyzer::Date.new
       expect(ws.replace_number_only_date(string)).to eq("Today is Tues. March 3rd, 2011.  wsdateword ")

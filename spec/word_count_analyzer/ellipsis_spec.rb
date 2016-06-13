@@ -95,11 +95,11 @@ RSpec.describe WordCountAnalyzer::Ellipsis do
     end
   end
 
-  context '#occurences' do
+  context '#occurrences' do
     it 'returns a string with the ellipsis replaced #001' do
       string = 'Using an ellipsis … causes different counts…depending on the style . . . that you use. I never meant that.... She left the store. The practice was not abandoned. . . .'
       ws = WordCountAnalyzer::Ellipsis.new
-      expect(ws.occurences(string)).to eq(5)
+      expect(ws.occurrences(string)).to eq(5)
     end
   end
 end

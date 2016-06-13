@@ -29,7 +29,7 @@ module WordCountAnalyzer
             .gsub(UNICODE_ELLIPSIS, ' wseword ')
     end
 
-    def occurences(text)
+    def occurrences(text)
       count = 0
       replace(text).split(' ').map { |token| count += 1 if token.strip.eql?('wseword') }
       count

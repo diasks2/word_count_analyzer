@@ -45,11 +45,11 @@ RSpec.describe WordCountAnalyzer::Hyperlink do
     end
   end
 
-  context '#occurences' do
-    it 'returns the occurences of hyperlink tokens in a string #001' do
+  context '#occurrences' do
+    it 'returns the occurrences of hyperlink tokens in a string #001' do
       string = "Today the date is: Jan 1. Visit https://www.example.com/hello or http://www.google.co.uk"
       ws = WordCountAnalyzer::Hyperlink.new
-      expect(ws.occurences(string)).to eq(2)
+      expect(ws.occurrences(string)).to eq(2)
     end
   end
 

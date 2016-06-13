@@ -42,13 +42,13 @@ RSpec.describe WordCountAnalyzer::Slash do
   end
 
   context '#forward_slash_occurences' do
-    it 'returns the number of occurences of tokens with a forward slash #001' do
+    it 'returns the number of occurrences of tokens with a forward slash #001' do
       string = "Using the solidus for he/she/it is often discouraged, except in this case she/he said."
       ws = WordCountAnalyzer::Slash.new(string: string)
       expect(ws.forward_slash_occurences).to eq(2)
     end
 
-    it 'returns the number of occurences of tokens with a forward slash #002' do
+    it 'returns the number of occurrences of tokens with a forward slash #002' do
       string = "Hello world."
       ws = WordCountAnalyzer::Slash.new(string: string)
       expect(ws.forward_slash_occurences).to eq(0)
@@ -56,19 +56,19 @@ RSpec.describe WordCountAnalyzer::Slash do
   end
 
   context '#backslash_occurences' do
-    it 'returns the number of occurences of tokens with a backslash #001' do
+    it 'returns the number of occurrences of tokens with a backslash #001' do
       string = 'The file location is c:\Users\johndoe or d:\Users\john\www'
       ws = WordCountAnalyzer::Slash.new(string: string)
       expect(ws.backslash_occurences).to eq(2)
     end
 
-    it 'returns the number of occurences of tokens with a backslash #002' do
+    it 'returns the number of occurrences of tokens with a backslash #002' do
       string = "Hello world."
       ws = WordCountAnalyzer::Slash.new(string: string)
       expect(ws.backslash_occurences).to eq(0)
     end
 
-    it 'returns the number of occurences of tokens with a backslash #003' do
+    it 'returns the number of occurrences of tokens with a backslash #003' do
       string = "<span>Hello world.</span>"
       ws = WordCountAnalyzer::Slash.new(string: string)
       expect(ws.backslash_occurences).to eq(0)
