@@ -26,13 +26,19 @@ RSpec.describe WordCountAnalyzer::Number do
       expect(ws.includes_number?).to eq(true)
     end
 
-    it "returns false if the string doesn't includes a number #005" do
+    it 'returns true if the string includes a number #005' do
+      string = 'I was born in 1993'
+      ws = WordCountAnalyzer::Number.new(string: string)
+      expect(ws.includes_number?).to eq(true)
+    end
+
+    it "returns false if the string doesn't includes a number #006" do
       string = 'Hello world.'
       ws = WordCountAnalyzer::Number.new(string: string)
       expect(ws.includes_number?).to eq(false)
     end
 
-    it "returns false if the string doesn't includes a number #006" do
+    it "returns false if the string doesn't includes a number #007" do
       string = 'Today is 2/18/2014.'
       ws = WordCountAnalyzer::Number.new(string: string)
       expect(ws.includes_number?).to eq(false)
