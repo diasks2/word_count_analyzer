@@ -5,7 +5,7 @@ module WordCountAnalyzer
 
     attr_reader :string
     def initialize(string:)
-      @string = WordCountAnalyzer::NumberedList.new(string: WordCountAnalyzer::Date.new.replace(string)).replace
+      @string = string
     end
 
     def includes_number?

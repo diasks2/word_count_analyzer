@@ -54,10 +54,10 @@ RSpec.describe WordCountAnalyzer::Number do
       expect(ws.occurrences).to eq(4)
     end
 
-    it 'ignores dates #002' do
+    it 'does not ignore dates #002' do
       string = 'It was only 50 % of the total on Wednesday, June 4 2015. 500 total. That costs $300 and is 50% off only on Apr 5th 1999.'
       ws = WordCountAnalyzer::Number.new(string: string)
-      expect(ws.occurrences).to eq(4)
+      expect(ws.occurrences).to eq(7)
     end
   end
 end
