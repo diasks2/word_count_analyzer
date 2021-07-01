@@ -49,7 +49,7 @@ Other gray areas not covered by this gem:
 
 ```ruby
 text = "This string has a date: Monday, November 3rd, 2011. I was thinking... it also shouldn't have too many contractions, maybe 4. <html> Some HTML and a hyphenated-word</html>. Don't count stray punctuation ? ? ? Please visit the ____________ ------------ ........ go-to site: https://www.example-site.com today. Let's add a list 1. item a 2. item b 3. item c. Now let's add he/she/it or a c:\\Users\\john. 2/15/2012 is the date! { HYPERLINK 'http://www.hello.com' }"
-WordCountAnalyzer::Analyzer.new.analyze(text)
+WordCountAnalyzer::Analyzer.new(text: text).analyze
 
 # =>   {
 #        "ellipsis": 1,
