@@ -8,7 +8,7 @@ Word Count Analyzer is a Ruby gem that analyzes a string for potential areas of 
 
 If you prioritize speed over accuracy, then I recommend not using this gem. There are most definitely faster gems for getting a word count. However, if accuracy is important, and you want control over the gray areas that affect word count, then this gem is for you.
 
-##Install  
+## Install  
 
 **Ruby**  
 *Supports Ruby 2.1.0 and above*  
@@ -22,7 +22,7 @@ Add this line to your application’s Gemfile:
 gem 'word_count_analyzer'
 ```
 
-##Live Demo
+## Live Demo
 
 Try out a [live demo](https://www.tm-town.com/word-count-analyzer) of Word Count Analyzer in the browser.
 
